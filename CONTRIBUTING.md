@@ -27,7 +27,4 @@ After you have approved a PR, please merge the PR using **Squash and merge** wit
 
 ### Release
 
-```
-% cd garoon-rest
-% npm run release
-```
+Commenting `@shipjs prepare` on an issue or PR will create a PR for a new release. Merging the PR will trigger publishing to npm, creating a tag, and creating a release.
