@@ -16,10 +16,11 @@ export type GaroonErrorResponse = ErrorResponse<GaroonErrorResponseData>;
 export class GaroonRestAPIError extends Error {
   readonly errorCode: string;
   readonly status: number;
-  cause: string;
-  counterMeasure: string;
-  developerInfo: string;
-  backtrace: string;
+  readonly headers: any;
+  readonly cause: string;
+  readonly counterMeasure: string;
+  readonly developerInfo: string;
+  readonly backtrace: string;
 
   constructor(error: GaroonErrorResponse) {
     super(error.data.error.message);
@@ -27,6 +28,7 @@ export class GaroonRestAPIError extends Error {
     this.name = "GaroonRestAPIError";
     this.errorCode = error.data.error.errorCode;
     this.status = error.status;
+    this.headers = error.headers;
     this.cause = error.data.error.cause;
     this.counterMeasure = error.data.error.counterMeasure;
     this.developerInfo = error.data.error.developerInfo;

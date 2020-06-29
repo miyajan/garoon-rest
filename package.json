@@ -27,12 +27,13 @@
     "compile:esm": "tsc -p tsconfig.esm.json",
     "compile:cjs": "tsc",
     "fix:lint": "npm run lint:eslint -- --fix",
-    "fix:md": "prettier --write README.md",
+    "fix:md": "prettier --write README.md 'docs/**/*.md'",
     "fix": "run-p fix:*",
     "lint:eslint": "eslint 'src/**/*.ts'",
-    "lint:md": "prettier --check README.md",
+    "lint:md": "prettier --check README.md 'docs/**/*.md'",
     "lint:ts": "tsc --noEmit",
-    "start": "npm run compile:cjs -- --watch"
+    "start": "npm run compile:cjs -- --watch",
+    "release": "shipjs prepare"
   },
   "repository": {
     "type": "git",
@@ -70,6 +71,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
+    "shipjs": "0.20.1",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
