@@ -17,6 +17,7 @@ declare const location:
   | {
       host: string;
       protocol: string;
+      href: string;
     }
   | undefined;
 
