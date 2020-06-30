@@ -36,7 +36,27 @@ export const buildFormDataValue = (data: unknown) => {
 };
 
 export const buildBaseUrl = (baseUrl?: string) => {
+  if (baseUrl) {
+    return baseUrl;
+  }
+
   // We assume that location always exists in a browser environment
+
+  // on-premise
+  if (location!.href.includes("grn.cgi")) {
+    return location!.href.substring(
+      0,
+      location!.href.indexOf("grn.cgi") + "grn.cgi".length
+    );
+  }
+  if (location!.href.includes("grn.exe")) {
+    return location!.href.substring(
+      0,
+      location!.href.indexOf("grn.exe") + "grn.exe".length
+    );
+  }
+
+  // cybozu.com
   const { host, protocol } = location!;
-  return baseUrl ?? `${protocol}//${host}`;
+  return baseUrl ?? `${protocol}//${host}/g`;
 };
