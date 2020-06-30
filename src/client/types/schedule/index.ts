@@ -1,4 +1,10 @@
 export type EventID = string | number;
+export type TargetID = string | number;
+export type ExcludeFromSearchElement =
+  | "subject"
+  | "company"
+  | "notes"
+  | "comments";
 
 export type Event = {
   id: string;

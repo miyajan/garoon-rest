@@ -1,17 +1,29 @@
 import FormData from "form-data";
 export interface HttpClient {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  get: <T extends object>(path: string, params: object) => Promise<T>;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  getData: (path: string, params: object) => Promise<ArrayBuffer>;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  post: <T extends object>(path: string, params: object) => Promise<T>;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  postData: <T extends object>(path: string, params: FormData) => Promise<T>;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  put: <T extends object>(path: string, params: object) => Promise<T>;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  delete: <T extends object>(path: string, params: object) => Promise<T>;
+  get: <T extends Record<string, unknown>>(
+    path: string,
+    params: Record<string, unknown>
+  ) => Promise<T>;
+  getData: (
+    path: string,
+    params: Record<string, unknown>
+  ) => Promise<ArrayBuffer>;
+  post: <T extends Record<string, unknown>>(
+    path: string,
+    params: Record<string, unknown>
+  ) => Promise<T>;
+  postData: <T extends Record<string, unknown>>(
+    path: string,
+    params: FormData
+  ) => Promise<T>;
+  put: <T extends Record<string, unknown>>(
+    path: string,
+    params: Record<string, unknown>
+  ) => Promise<T>;
+  delete: <T extends Record<string, unknown>>(
+    path: string,
+    params: Record<string, unknown>
+  ) => Promise<T>;
 }
 
 export type ErrorResponse<T = any> = {
