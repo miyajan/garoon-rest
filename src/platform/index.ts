@@ -5,8 +5,9 @@ type PlatformDeps = {
   ) => Promise<{ name: string; data: unknown }>;
   getRequestToken: () => Promise<string>;
   getDefaultAuth: () => DiscriminatedAuth;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  buildPlatformDependentConfig: (params: object) => object;
+  buildPlatformDependentConfig: (
+    params: Record<string, unknown>
+  ) => Record<string, unknown>;
   buildHeaders: () => Record<string, string>;
   buildFormDataValue: (data: unknown) => unknown;
   buildBaseUrl: (baseUrl?: string) => string;
