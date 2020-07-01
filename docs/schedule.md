@@ -1,6 +1,7 @@
 # Schedule
 
 - [getEvent](#getevent)
+- [getEvents](#getevents)
 
 ## Overview
 
