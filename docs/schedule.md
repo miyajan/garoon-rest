@@ -2,6 +2,7 @@
 
 - [getEvent](#getevent)
 - [getEvents](#getevents)
+- [addEvent](#addevent)
 
 ## Overview
 
@@ -56,7 +57,7 @@ Get events by specifying conditions.
 | orderBy.order     |      String      |             Yes             | The sort order. Possible values are: `asc`, `desc`. If nothing is specified, it will default to `asc`.                                                               |
 | rangeStart        |      String      |                             | The start datetime for the search. The format is RFC3339. (e.g. `2020-01-01T00:00:00Z`)<br />If `rangeEnd` is specified, `rangeStart` must be before the `rangeEnd`. |
 | rangeEnd          |      String      |                             | The end datetime for the search. The format is RFC3339. (e.g. `2020-01-01T00:00:00Z`)<br />If `rangeStart` is specified, `rangeEnd` must be later than `rangeStart`. |
-| target            | Number or String | Conditionally<br />Required | The ID of an user or an organization or a facility. Required if `targetType` is specified. If nothing is specified, it will default to the login user ID.            |
+| target            | Number or String | Conditionally<br />Required | The ID of the target. Required if `targetType` is specified. If nothing is specified, it will default to the login user ID.                                          |
 | targetType        |      String      | Conditionally<br />Required | The target type. Possible values are: `user`, `organization`, `facility`. Required if `target` is specified. If nothing is specified, it will default to `user`.     |
 | keyword           |      String      | Conditionally<br />Required | The search keyword. The keyword is searched for subject, company information, notes and comments. Required if `excludeFromSearch` is specified.                      |
 | excludeFromSearch | Array\<String\>  |                             | The specified elements are excluded from the keyword search. Possible values are: `subject`, `company`, `notes`, `comments`.                                         |
@@ -68,3 +69,59 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360000440583#step2
+
+### addEvent
+
+Add a regular or periodic event. A repeating or tentative event cannot be added by this API.
+
+#### Parameters
+
+| Name                       |       Type       |          Required           | Description                                                                                                                                                                |
+| -------------------------- | :--------------: | :-------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| eventType                  |      String      |             Yes             | The event type. Possible values are: `REGULAR`, `ALL_DAY`.                                                                                                                 |
+| eventMenu                  |      String      |                             | The event menu. An empty string is taken as the default setting ("-----").                                                                                                 |
+| subject                    |      String      |                             | The event subject.                                                                                                                                                         |
+| notes                      |      String      |                             | The event memo.                                                                                                                                                            |
+| start                      |      Object      |             Yes             | An object containing data of the start datetime.                                                                                                                           |
+| start.dateTime             |      String      |             Yes             | The start datetime of the event.                                                                                                                                           |
+| start.timeZone             |      String      |             Yes             | The timezone of the start datetime.                                                                                                                                        |
+| end                        |      Object      | Conditionally<br />Required | An object containing data of the end datetime. Required if `isStartOnly` is false, `facilities` is specified, or `eventType` is `ALL_DAY`.                                 |
+| end.dateTime               |      String      |             Yes             | The end datetime of the event.                                                                                                                                             |
+| end.timeZone               |      String      |             Yes             | The timezone of the end datetime.                                                                                                                                          |
+| isAllDay                   |     Boolean      |                             | It indicates whether the event is all-day.                                                                                                                                 |
+| isStartOnly                |     Boolean      | Conditionally<br />Required | It indicates whether the event has only the start datetime. If nothing is specified, it will default to `false`. It must be specified as `true` if `end` is not specified. |
+| attendees                  | Array\<Object\>  | Conditionally<br />Required | The list of attendees. Required if `facilities` is not specified.                                                                                                          |
+| attendees[].type           |      String      |             Yes             | The attendee type. Possible values are `ORGANIZATION`, `USER`.                                                                                                             |
+| attendees[].id             | Number or String | Conditionally<br />Required | The ID of the attendee. Required if `attendees[].code` is not specified.                                                                                                   |
+| attendees[].code           |      String      | Conditionally<br />Required | The code of the attendee. Required if `attendees[].id` is not specified.                                                                                                   |
+| facilities                 | Array\<Object\>  | Conditionally<br />Required | The list of facilities. Required if `attendees` is not specified.                                                                                                          |
+| facilities[].id            | Number or String | Conditionally<br />Required | The ID of the facility. Required if `facilities[].code` is not specified.                                                                                                  |
+| facilities[].code          |      String      | Conditionally<br />Required | The code of the facility. Required if `facilities[].id` is not specified.                                                                                                  |
+| facilityUsingPurpose       |      String      | Conditionally<br />Required | The purpose of the use of the facility. Required if "Facility usage request" is enabled.                                                                                   |
+| companyInfo                |      Object      |                             | An object containing data of the company.                                                                                                                                  |
+| companyInfo.name           |      String      |                             | The company name.                                                                                                                                                          |
+| companyInfo.zipCode        |      String      |                             | The zip code of the company.                                                                                                                                               |
+| companyInfo.address        |      String      |                             | The company address.                                                                                                                                                       |
+| companyInfo.route          |      String      |                             | The route to the company.                                                                                                                                                  |
+| companyInfo.routeTime      |      String      |                             | The time of the route.                                                                                                                                                     |
+| companyInfo.routeFare      |      String      |                             | The fare of the route.                                                                                                                                                     |
+| companyInfo.phone          |      String      |                             | The phone number of the company.                                                                                                                                           |
+| attachments                | Array\<Object\>  |                             | The list of attachments.                                                                                                                                                   |
+| attachments[].name         |      String      |                             | The name of the attachment.                                                                                                                                                |
+| attachments[].content      |      String      |                             | The content of the attachment. It must be base64 string.                                                                                                                   |
+| visibilityType             |      String      |                             | The visibility type. Possible values are `PUBLIC`, `PRIVATE`, `SET_PRIVATE_WATCHERS`.                                                                                      |
+| useAttendanceCheck         |     Boolean      |                             | It indicates whether "Request responses" of attendees is enabled.                                                                                                          |
+| watchers                   | Array\<Object\>  | Conditionally<br />Required | The list of private watchers. Required if `visibilityType` is `SET_PRIVATE_WATCHERS`.                                                                                      |
+| watchers[].type            |      String      |             Yes             | The type of the watcher. Possible values are `ORGANIZATION`, `USER`, `ROLE`.                                                                                               |
+| watchers[].id              | Number or String | Conditionally<br />Required | The ID of the watcher. Required if `watchers[].code` is not specified.                                                                                                     |
+| watchers[].code            |      String      | Conditionally<br />Required | The code of the watcher. Required if `watchers[].id` is not specified.                                                                                                     |
+| additionalItems            |      Object      |                             | An object containing data of additional items.                                                                                                                             |
+| additionalItems.item.value |      String      |                             | The value of the item.                                                                                                                                                     |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360000425163#step1
