@@ -31,10 +31,6 @@ export const buildHeaders = () => {
   return {};
 };
 
-export const buildFormDataValue = (data: unknown) => {
-  return new Blob([data]);
-};
-
 export const buildBaseUrl = (baseUrl?: string) => {
   if (baseUrl) {
     return baseUrl;

@@ -51,4 +51,59 @@ export class ScheduleClient {
     }
     return this.client.get(path, data);
   }
+
+  public addEvent(params: {
+    eventType: "REGULAR" | "ALL_DAY";
+    eventMenu?: string;
+    subject?: string;
+    notes?: string;
+    start: {
+      dateTime: string;
+      timeZone: string;
+    };
+    end?: {
+      dateTime: string;
+      timeZone: string;
+    };
+    isAllDay?: boolean;
+    isStartOnly?: boolean;
+    attendees?: Array<{
+      type: "ORGANIZATION" | "USER";
+      id?: string | number;
+      code?: string;
+    }>;
+    facilities?: Array<{
+      id?: string | number;
+      code?: string;
+    }>;
+    facilityUsingPurpose?: string;
+    companyInfo?: {
+      name?: string;
+      zipCode?: string;
+      address?: string;
+      route?: string;
+      routeTime?: string;
+      routeFare?: string;
+      phone?: string;
+    };
+    attachments?: Array<{
+      name?: string;
+      content?: string;
+    }>;
+    visibilityType?: "PUBLIC" | "PRIVATE" | "SET_PRIVATE_WATCHERS";
+    useAttendanceCheck?: boolean;
+    watchers?: Array<{
+      type: "ORGANIZATION" | "USER" | "ROLE";
+      id?: string | number;
+      code?: string | number;
+    }>;
+    additionalItems?: {
+      item?: {
+        value?: string;
+      };
+    };
+  }): Promise<Event> {
+    const path = buildPath({ endpointName: "schedule/events" });
+    return this.client.post(path, params);
+  }
 }

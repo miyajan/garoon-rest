@@ -1,4 +1,3 @@
-import FormData from "form-data";
 import qs from "qs";
 import { Base64 } from "js-base64";
 
@@ -12,7 +11,7 @@ import {
 import { BasicAuth, DiscriminatedAuth } from "./GaroonRestAPIClient";
 import { platformDeps } from "./platform/";
 
-type Data = Params | FormData;
+type Data = Params;
 
 type GaroonAuthHeader =
   | {
@@ -108,26 +107,16 @@ export class GaroonRequestConfigBuilder implements RequestConfigBuilder {
         };
       }
       case "post": {
-        if (params instanceof FormData) {
-          const formData = await this.buildData(params);
-          return {
-            ...requestConfig,
-            headers:
-              // NOTE: formData.getHeaders does not exist in a browser environment.
-              typeof formData.getHeaders === "function"
-                ? { ...this.headers, ...formData.getHeaders() }
-                : this.headers,
-            data: formData,
-          };
-        }
         return {
           ...requestConfig,
+          headers: { ...this.headers, "Content-Type": "application/json" },
           data: await this.buildData(params),
         };
       }
-      case "put": {
+      case "patch": {
         return {
           ...requestConfig,
+          headers: { ...this.headers, "Content-Type": "application/json" },
           data: await this.buildData(params),
         };
       }
@@ -154,10 +143,6 @@ export class GaroonRequestConfigBuilder implements RequestConfigBuilder {
   private async buildData<T extends Data>(params: T): Promise<T> {
     if (this.auth.type === "session") {
       const requestToken = await this.getRequestToken();
-      if (params instanceof FormData) {
-        params.append("__REQUEST_TOKEN__", requestToken);
-        return params;
-      }
       return {
         __REQUEST_TOKEN__: requestToken,
         ...params,

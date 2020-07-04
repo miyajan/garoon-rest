@@ -5,7 +5,6 @@ import {
   RequestConfigBuilder,
   RequestConfig,
 } from "./HttpClientInterface";
-import FormData from "form-data";
 
 export class AxiosClient implements HttpClient {
   private readonly errorResponseHandler: ErrorResponseHandler;
@@ -31,18 +30,6 @@ export class AxiosClient implements HttpClient {
     return this.sendRequest(requestConfig);
   }
 
-  public async getData(path: string, params: any) {
-    const requestConfig = await this.requestConfigBuilder.build(
-      "get",
-      path,
-      params,
-      {
-        responseType: "arraybuffer",
-      }
-    );
-    return this.sendRequest(requestConfig);
-  }
-
   public async post(path: string, params: any) {
     const requestConfig = await this.requestConfigBuilder.build(
       "post",
@@ -52,18 +39,9 @@ export class AxiosClient implements HttpClient {
     return this.sendRequest(requestConfig);
   }
 
-  public async postData(path: string, formData: FormData) {
+  public async patch(path: string, params: any) {
     const requestConfig = await this.requestConfigBuilder.build(
-      "post",
-      path,
-      formData
-    );
-    return this.sendRequest(requestConfig);
-  }
-
-  public async put(path: string, params: any) {
-    const requestConfig = await this.requestConfigBuilder.build(
-      "put",
+      "patch",
       path,
       params
     );

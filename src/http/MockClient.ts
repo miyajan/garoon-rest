@@ -3,10 +3,9 @@ import {
   RequestConfigBuilder,
   ErrorResponseHandler,
 } from "./HttpClientInterface";
-import FormData from "form-data";
 
 type Log = {
-  method: "get" | "post" | "put" | "delete";
+  method: "get" | "post" | "patch" | "delete";
   path: string;
   params: {
     [key: string]: any;
@@ -56,15 +55,6 @@ export class MockClient implements HttpClient {
     this.logs.push({ method: requestConfig.method, path, params });
     return this.createResponse<T>();
   }
-  public async getData(path: string, params: any): Promise<ArrayBuffer> {
-    const requestConfig = await this.requestConfigBuilder.build(
-      "get",
-      path,
-      params
-    );
-    this.logs.push({ method: requestConfig.method, path, params });
-    return this.createResponse<ArrayBuffer>();
-  }
   public async post<T extends Record<string, unknown>>(
     path: string,
     params: any
@@ -77,28 +67,12 @@ export class MockClient implements HttpClient {
     this.logs.push({ method: requestConfig.method, path, params });
     return this.createResponse<T>();
   }
-  public async postData<T extends Record<string, unknown>>(
-    path: string,
-    formData: FormData
-  ): Promise<T> {
-    const requestConfig = await this.requestConfigBuilder.build(
-      "post",
-      path,
-      formData
-    );
-    this.logs.push({
-      method: requestConfig.method,
-      path,
-      params: { formData },
-    });
-    return this.createResponse<T>();
-  }
-  public async put<T extends Record<string, unknown>>(
+  public async patch<T extends Record<string, unknown>>(
     path: string,
     params: any
   ): Promise<T> {
     const requestConfig = await this.requestConfigBuilder.build(
-      "put",
+      "patch",
       path,
       params
     );

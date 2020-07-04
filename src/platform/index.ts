@@ -9,7 +9,6 @@ type PlatformDeps = {
     params: Record<string, unknown>
   ) => Record<string, unknown>;
   buildHeaders: () => Record<string, string>;
-  buildFormDataValue: (data: unknown) => unknown;
   buildBaseUrl: (baseUrl?: string) => string;
 };
 
@@ -29,9 +28,6 @@ export const platformDeps: PlatformDeps = {
   buildHeaders: () => {
     throw new Error("not implemented");
   },
-  buildFormDataValue: () => {
-    throw new Error("not implemented");
-  },
   buildBaseUrl: () => {
     throw new Error("not implemented");
   },
@@ -43,6 +39,5 @@ export const injectPlatformDeps = (deps: Partial<PlatformDeps>) => {
   platformDeps.getDefaultAuth = deps.getDefaultAuth!;
   platformDeps.buildPlatformDependentConfig = deps.buildPlatformDependentConfig!;
   platformDeps.buildHeaders = deps.buildHeaders!;
-  platformDeps.buildFormDataValue = deps.buildFormDataValue!;
   platformDeps.buildBaseUrl = deps.buildBaseUrl!;
 };
