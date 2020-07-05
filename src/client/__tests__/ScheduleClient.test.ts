@@ -161,4 +161,71 @@ describe("ScheduleClient", () => {
       expect(mockClient.getLogs()[0].params).toEqual(params);
     });
   });
+
+  describe("updateEvent", () => {
+    const params = {
+      id: "1",
+      event: {
+        eventMenu: "MTG",
+        subject: "Weekly conference",
+        notes: "This is notes.",
+        start: {
+          dateTime: "2020-07-01T14:00:00+09:00",
+          timeZone: "Asia/Tokyo",
+        },
+        end: {
+          dateTime: "2020-07-01T15:00:00+09:00",
+          timeZone: "Asia/Tokyo",
+        },
+        isAllDay: false,
+        isStartOnly: false,
+        attendees: [
+          {
+            type: "USER" as const,
+            id: 1,
+          },
+        ],
+        facilities: [
+          {
+            id: 1,
+          },
+        ],
+        facilityUsingPurpose: "Because of the explanation of a new plan",
+        companyInfo: {
+          name: "Cybozu, Inc.",
+          zipCode: "103-xxxx",
+          address: "2-7-1, Nihombashi, Chuo-ku, Tokyo",
+          route: "Nihombashi Sta. - Ginza Line - Shibuya Sta.",
+          routeTime: "18",
+          routeFare: "195",
+          phone: "03-4306-xxxx",
+        },
+        visibilityType: "PUBLIC" as const,
+        useAttendanceCheck: false,
+        watchers: [
+          {
+            type: "USER" as const,
+            id: 2,
+          },
+        ],
+        additionalItems: {
+          item: {
+            value: "hoge",
+          },
+        },
+      },
+    };
+    beforeEach(async () => {
+      await scheduleClient.updateEvent(params);
+    });
+    it("should pass the path to the http client", () => {
+      expect(mockClient.getLogs()[0].path).toBe("/api/v1/schedule/events/1");
+    });
+    it("should send a patch request", () => {
+      expect(mockClient.getLogs()[0].method).toBe("patch");
+    });
+    it("should pass params.event as a param to the http client", () => {
+      expect(mockClient.getLogs()[0].params).toEqual(params.event);
+    });
+  });
 });
