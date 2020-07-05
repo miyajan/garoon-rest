@@ -106,4 +106,58 @@ export class ScheduleClient {
     const path = buildPath({ endpointName: "schedule/events" });
     return this.client.post(path, params);
   }
+
+  public updateEvent(params: {
+    id: EventID;
+    event: {
+      eventMenu?: string;
+      subject?: string;
+      notes?: string;
+      start: {
+        dateTime: string;
+        timeZone: string;
+      };
+      end?: {
+        dateTime: string;
+        timeZone: string;
+      };
+      isAllDay?: boolean;
+      isStartOnly?: boolean;
+      attendees?: Array<{
+        type: "ORGANIZATION" | "USER";
+        id?: string | number;
+        code?: string;
+      }>;
+      facilities?: Array<{
+        id?: string | number;
+        code?: string;
+      }>;
+      facilityUsingPurpose?: string;
+      companyInfo?: {
+        name?: string;
+        zipCode?: string;
+        address?: string;
+        route?: string;
+        routeTime?: string;
+        routeFare?: string;
+        phone?: string;
+      };
+      visibilityType?: "PUBLIC" | "PRIVATE" | "SET_PRIVATE_WATCHERS";
+      useAttendanceCheck?: boolean;
+      watchers?: Array<{
+        type: "ORGANIZATION" | "USER" | "ROLE";
+        id?: string | number;
+        code?: string | number;
+      }>;
+      additionalItems?: {
+        item?: {
+          value?: string;
+        };
+      };
+    };
+  }): Promise<Event> {
+    const { id, event } = params;
+    const path = buildPath({ endpointName: `schedule/events/${id}` });
+    return this.client.patch(path, event);
+  }
 }
