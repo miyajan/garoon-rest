@@ -98,6 +98,7 @@ describe("GaroonRequestConfigBuilder", () => {
           "User-Agent": expectedUa,
           "X-Cybozu-Authorization": expectedAuth,
         },
+        data: {},
       });
     });
   });
@@ -185,9 +186,12 @@ describe("GaroonRequestConfigBuilder", () => {
       expect(requestConfig).toStrictEqual({
         method: "delete",
         proxy: undefined,
-        url: `${baseUrl}/api/v1/schedule/events/1?__REQUEST_TOKEN__=${requestToken}&key=value`,
+        url: `${baseUrl}/api/v1/schedule/events/1?key=value`,
         headers: {
           "X-Requested-With": "XMLHttpRequest",
+        },
+        data: {
+          __REQUEST_TOKEN__: requestToken,
         },
       });
     });

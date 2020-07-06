@@ -121,13 +121,11 @@ export class GaroonRequestConfigBuilder implements RequestConfigBuilder {
         };
       }
       case "delete": {
-        const requestUrl = this.buildRequestUrl(
-          path,
-          await this.buildData(params)
-        );
+        const requestUrl = this.buildRequestUrl(path, params);
         return {
           ...requestConfig,
           url: requestUrl,
+          data: await this.buildData({}),
         };
       }
       default: {

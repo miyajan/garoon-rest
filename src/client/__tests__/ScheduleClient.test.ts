@@ -228,4 +228,22 @@ describe("ScheduleClient", () => {
       expect(mockClient.getLogs()[0].params).toEqual(params.event);
     });
   });
+
+  describe("deleteEvent", () => {
+    const params = {
+      id: "1",
+    };
+    beforeEach(async () => {
+      await scheduleClient.deleteEvent(params);
+    });
+    it("should pass the path to the http client", () => {
+      expect(mockClient.getLogs()[0].path).toBe("/api/v1/schedule/events/1");
+    });
+    it("should send a delete request", () => {
+      expect(mockClient.getLogs()[0].method).toBe("delete");
+    });
+    it("should pass an empty object as a param to the http client", () => {
+      expect(mockClient.getLogs()[0].params).toEqual({});
+    });
+  });
 });

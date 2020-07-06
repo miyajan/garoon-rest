@@ -160,4 +160,10 @@ export class ScheduleClient {
     const path = buildPath({ endpointName: `schedule/events/${id}` });
     return this.client.patch(path, event);
   }
+
+  public async deleteEvent(params: { id: EventID }): Promise<void> {
+    const { id } = params;
+    const path = buildPath({ endpointName: `schedule/events/${id}` });
+    await this.client.delete(path, {});
+  }
 }

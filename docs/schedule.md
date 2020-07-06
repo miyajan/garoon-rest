@@ -4,6 +4,7 @@
 - [getEvents](#getevents)
 - [addEvent](#addevent)
 - [updateEvent](#updateevent)
+- [deleteEvent](#deleteevent)
 
 ## Overview
 
@@ -135,6 +136,7 @@ Update an event by specifying the event ID. A tentative event cannot be updated 
 
 | Name                       |       Type       |          Required           | Description                                                                                                                                                                |
 | -------------------------- | :--------------: | :-------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                         | Number or String |             Yes             | The event ID.                                                                                                                                                              |
 | eventMenu                  |      String      |                             | The event menu. An empty string is taken as the default setting ("-----").                                                                                                 |
 | subject                    |      String      |                             | The event subject.                                                                                                                                                         |
 | notes                      |      String      |                             | The event memo.                                                                                                                                                            |
@@ -178,3 +180,21 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360000495746#step1
+
+### deleteEvent
+
+Delete an event by specifying the event ID. If an ID of a repeating event is specified, all ranges of the event will be deleted. A tentative event cannot be deleted by this API.
+
+#### Parameters
+
+| Name |       Type       | Required | Description   |
+| ---- | :--------------: | :------: | ------------- |
+| id   | Number or String |   Yes    | The event ID. |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360000393866
