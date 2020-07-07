@@ -95,7 +95,7 @@ export class ScheduleClient {
     watchers?: Array<{
       type: "ORGANIZATION" | "USER" | "ROLE";
       id?: string | number;
-      code?: string | number;
+      code?: string;
     }>;
     additionalItems?: {
       item?: {
@@ -147,7 +147,7 @@ export class ScheduleClient {
       watchers?: Array<{
         type: "ORGANIZATION" | "USER" | "ROLE";
         id?: string | number;
-        code?: string | number;
+        code?: string;
       }>;
       additionalItems?: {
         item?: {
@@ -165,5 +165,42 @@ export class ScheduleClient {
     const { id } = params;
     const path = buildPath({ endpointName: `schedule/events/${id}` });
     await this.client.delete(path, {});
+  }
+
+  public searchAvailableTimes(params: {
+    timeRanges: Array<{
+      start: string;
+      end: string;
+    }>;
+    timeInterval: number;
+    attendees?: Array<{
+      type: "ORGANIZATION" | "USER";
+      id?: string | number;
+      code?: string;
+    }>;
+    facilities?: Array<{
+      id?: string | number;
+      code?: string;
+    }>;
+    facilitySearchCondition?: "AND" | "OR";
+  }): Promise<{
+    availableTimes: Array<{
+      start: {
+        dateTime: string;
+        timeZone: string;
+      };
+      end: {
+        dateTime: string;
+        timeZone: string;
+      };
+      facility: {
+        id: string;
+        code: string;
+        name: string;
+      };
+    }>;
+  }> {
+    const path = buildPath({ endpointName: "schedule/searchAvailableTimes" });
+    return this.client.post(path, params);
   }
 }
