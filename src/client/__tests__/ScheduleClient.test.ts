@@ -246,4 +246,42 @@ describe("ScheduleClient", () => {
       expect(mockClient.getLogs()[0].params).toEqual({});
     });
   });
+
+  describe("searchAvailableTimes", () => {
+    const params = {
+      timeRanges: [
+        {
+          start: "2020-07-01T14:00:00+09:00",
+          end: "2020-07-01T15:00:00+09:00",
+        },
+      ],
+      timeInterval: 30,
+      attendees: [
+        {
+          type: "USER" as const,
+          id: 6,
+        },
+      ],
+      facilities: [
+        {
+          id: 1,
+        },
+      ],
+      facilitySearchCondition: "OR" as const,
+    };
+    beforeEach(async () => {
+      await scheduleClient.searchAvailableTimes(params);
+    });
+    it("should pass the path to the http client", () => {
+      expect(mockClient.getLogs()[0].path).toBe(
+        "/api/v1/schedule/searchAvailableTimes"
+      );
+    });
+    it("should send a post request", () => {
+      expect(mockClient.getLogs()[0].method).toBe("post");
+    });
+    it("should pass params as a param to the http client", () => {
+      expect(mockClient.getLogs()[0].params).toEqual(params);
+    });
+  });
 });

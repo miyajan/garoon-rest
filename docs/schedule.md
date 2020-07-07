@@ -5,6 +5,7 @@
 - [addEvent](#addevent)
 - [updateEvent](#updateevent)
 - [deleteEvent](#deleteevent)
+- [searchAvailableTimes](#searchavailabletimes)
 
 ## Overview
 
@@ -198,3 +199,32 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360000393866
+
+### searchAvailableTimes
+
+Search available times of users, organizations and facilities.
+
+#### Parameters
+
+| Name                    |       Type       |          Required           | Description                                                                                |
+| ----------------------- | :--------------: | :-------------------------: | ------------------------------------------------------------------------------------------ |
+| timeRanges              | Array\<Object\>  |             Yes             | The list of search time ranges.                                                            |
+| timeRanges[].start      |      String      |             Yes             | The start datetime of the time range. The format is RFC3339. (e.g. `2020-01-01T00:00:00Z`) |
+| timeRanges[].end        |      String      |             Yes             | The end datetime of the time range. The format is RFC3339. (e.g. `2020-01-01T00:00:00Z`)   |
+| timeInterval            |      number      |             Yes             | The search time interval.                                                                  |
+| attendees               | Array\<Object\>  | Conditionally<br />Required | The list of attendees. Required if `facilities` is not specified.                          |
+| attendees[].type        |      String      |             Yes             | The attendee type. Possible values are `ORGANIZATION`, `USER`.                             |
+| attendees[].id          | Number or String | Conditionally<br />Required | The ID of the attendee. Required if `attendees[].code` is not specified.                   |
+| attendees[].code        |      String      | Conditionally<br />Required | The code of the attendee. Required if `attendees[].id` is not specified.                   |
+| facilities              | Array\<Object\>  | Conditionally<br />Required | The list of facilities. Required if `attendees` is not specified.                          |
+| facilities[].id         | Number or String | Conditionally<br />Required | The ID of the facility. Required if `facilities[].code` is not specified.                  |
+| facilities[].code       |      String      | Conditionally<br />Required | The code of the facility. Required if `facilities[].id` is not specified.                  |
+| facilitySearchCondition |      String      |                             | The facility search condition. Possible values are `AND`, `OR`.                            |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360018417771#step1
