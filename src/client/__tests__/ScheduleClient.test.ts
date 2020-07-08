@@ -284,4 +284,24 @@ describe("ScheduleClient", () => {
       expect(mockClient.getLogs()[0].params).toEqual(params);
     });
   });
+
+  describe("getFacilities", () => {
+    const params = {
+      limit: 100,
+      offset: 0,
+      name: "Facility",
+    };
+    beforeEach(async () => {
+      await scheduleClient.getFacilities(params);
+    });
+    it("should pass the path to the http client", () => {
+      expect(mockClient.getLogs()[0].path).toBe("/api/v1/schedule/facilities");
+    });
+    it("should send a get request", () => {
+      expect(mockClient.getLogs()[0].method).toBe("get");
+    });
+    it("should pass params as a param to the http client", () => {
+      expect(mockClient.getLogs()[0].params).toEqual(params);
+    });
+  });
 });
