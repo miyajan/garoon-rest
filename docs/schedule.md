@@ -6,6 +6,7 @@
 - [updateEvent](#updateevent)
 - [deleteEvent](#deleteevent)
 - [searchAvailableTimes](#searchavailabletimes)
+- [getFacilities](#getfacilities)
 
 ## Overview
 
@@ -228,3 +229,23 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360018417771#step1
+
+### getFacilities
+
+Get facilities by specifying conditions.
+
+#### Parameters
+
+| Name   |  Type  | Required | Description                                                                                                                                |
+| ------ | :----: | :------: | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| limit  | number |          | The number of facilities to retrieve.<br />Must be between `1` and `1000`.<br />If nothing is specified, it will default to `100`.         |
+| offset | Number |          | The number of retrievals that will be skipped.<br />Must be between `0` and `2147483647`. If nothing is specified, it will default to `0`. |
+| name   | String |          | The facility name.                                                                                                                         |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360017764211#step1

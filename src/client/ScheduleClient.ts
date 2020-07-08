@@ -203,4 +203,22 @@ export class ScheduleClient {
     const path = buildPath({ endpointName: "schedule/searchAvailableTimes" });
     return this.client.post(path, params);
   }
+
+  public getFacilities(params: {
+    limit?: number;
+    offset?: number;
+    name?: string;
+  }): Promise<{
+    facilities: Array<{
+      id: string;
+      name: string;
+      code: string;
+      notes: string;
+      facilityGroup: string;
+    }>;
+    hasNext: boolean;
+  }> {
+    const path = buildPath({ endpointName: "schedule/facilities" });
+    return this.client.get(path, params);
+  }
 }
