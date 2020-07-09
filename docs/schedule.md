@@ -7,6 +7,7 @@
 - [deleteEvent](#deleteevent)
 - [searchAvailableTimes](#searchavailabletimes)
 - [getFacilities](#getfacilities)
+- [getFacilityGroups](#getfacilitygroups)
 
 ## Overview
 
@@ -238,7 +239,7 @@ Get facilities by specifying conditions.
 
 | Name   |  Type  | Required | Description                                                                                                                                |
 | ------ | :----: | :------: | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| limit  | number |          | The number of facilities to retrieve.<br />Must be between `1` and `1000`.<br />If nothing is specified, it will default to `100`.         |
+| limit  | Number |          | The number of facilities to retrieve.<br />Must be between `1` and `1000`.<br />If nothing is specified, it will default to `100`.         |
 | offset | Number |          | The number of retrievals that will be skipped.<br />Must be between `0` and `2147483647`. If nothing is specified, it will default to `0`. |
 | name   | String |          | The facility name.                                                                                                                         |
 
@@ -249,3 +250,22 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360017764211#step1
+
+### getFacilityGroups
+
+Get facility groups by specifying conditions.
+
+#### Parameters
+
+| Name   |  Type  | Required | Description                                                                                                                                |
+| ------ | :----: | :------: | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| limit  | Number |          | The number of facility groups to retrieve.<br />Must be between `1` and `1000`.<br />If nothing is specified, it will default to `100`.    |
+| offset | Number |          | The number of retrievals that will be skipped.<br />Must be between `0` and `2147483647`. If nothing is specified, it will default to `0`. |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360017481472#step1

@@ -204,7 +204,7 @@ export class ScheduleClient {
     return this.client.post(path, params);
   }
 
-  public getFacilities(params: {
+  public getFacilities(params?: {
     limit?: number;
     offset?: number;
     name?: string;
@@ -219,6 +219,26 @@ export class ScheduleClient {
     hasNext: boolean;
   }> {
     const path = buildPath({ endpointName: "schedule/facilities" });
-    return this.client.get(path, params);
+    return this.client.get(path, params ?? {});
+  }
+
+  public getFacilityGroups(params?: {
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    facilityGroups: Array<{
+      id: string;
+      name: string;
+      code: string;
+      notes: string;
+      parentFacilityGroup: string | null;
+      childFacilityGroups: Array<{
+        id: string;
+      }>;
+    }>;
+    hasNext: boolean;
+  }> {
+    const path = buildPath({ endpointName: "schedule/facilityGroups" });
+    return this.client.get(path, params ?? {});
   }
 }
