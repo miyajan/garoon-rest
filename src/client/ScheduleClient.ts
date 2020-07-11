@@ -241,4 +241,24 @@ export class ScheduleClient {
     const path = buildPath({ endpointName: "schedule/facilityGroups" });
     return this.client.get(path, params ?? {});
   }
+
+  public getFacilitiesByFacilityGroupID(params: {
+    id: string | number;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    facilities: Array<{
+      id: string;
+      name: string;
+      code: string;
+      notes: string;
+      facilityGroup: string;
+    }>;
+  }> {
+    const { id, ...rest } = params;
+    const path = buildPath({
+      endpointName: `schedule/facilityGroups/${id}/facilities`,
+    });
+    return this.client.get(path, rest as Record<string, unknown>);
+  }
 }
