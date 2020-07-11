@@ -8,6 +8,7 @@
 - [searchAvailableTimes](#searchavailabletimes)
 - [getFacilities](#getfacilities)
 - [getFacilityGroups](#getfacilitygroups)
+- [getFacilitiesByFacilityGroupID](#getfacilitiesbyfacilitygroupid)
 
 ## Overview
 
@@ -213,7 +214,7 @@ Search available times of users, organizations and facilities.
 | timeRanges              | Array\<Object\>  |             Yes             | The list of search time ranges.                                                            |
 | timeRanges[].start      |      String      |             Yes             | The start datetime of the time range. The format is RFC3339. (e.g. `2020-01-01T00:00:00Z`) |
 | timeRanges[].end        |      String      |             Yes             | The end datetime of the time range. The format is RFC3339. (e.g. `2020-01-01T00:00:00Z`)   |
-| timeInterval            |      number      |             Yes             | The search time interval.                                                                  |
+| timeInterval            |      Number      |             Yes             | The search time interval.                                                                  |
 | attendees               | Array\<Object\>  | Conditionally<br />Required | The list of attendees. Required if `facilities` is not specified.                          |
 | attendees[].type        |      String      |             Yes             | The attendee type. Possible values are `ORGANIZATION`, `USER`.                             |
 | attendees[].id          | Number or String | Conditionally<br />Required | The ID of the attendee. Required if `attendees[].code` is not specified.                   |
@@ -269,3 +270,23 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360017481472#step1
+
+### getFacilitiesByFacilityGroupID
+
+Get facilities belonging to the specified facility group.
+
+#### Parameters
+
+| Name   |       Type       | Required | Description                                                                                                                                |
+| ------ | :--------------: | :------: | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| id     | Number or String |   Yes    | The facility group ID.                                                                                                                     |
+| limit  |      Number      |          | The number of facilities to retrieve.<br />Must be between `1` and `1000`.<br />If nothing is specified, it will default to `100`.         |
+| offset |      Number      |          | The number of retrievals that will be skipped.<br />Must be between `0` and `2147483647`. If nothing is specified, it will default to `0`. |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360017481472#step2
