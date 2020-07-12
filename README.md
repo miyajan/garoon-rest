@@ -121,6 +121,7 @@ See [Error Handling](https://github.com/miyajan/garoon-rest/tree/master/docs/err
 ## References
 
 - [Schedule](https://github.com/miyajan/garoon-rest/tree/master/docs/schedule.md)
+- [Workflow](https://github.com/miyajan/garoon-rest/tree/master/docs/workflow.md)
 
 ## Contribution Guide
 

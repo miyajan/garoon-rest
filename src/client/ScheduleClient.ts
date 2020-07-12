@@ -39,7 +39,7 @@ export class ScheduleClient {
     }
 
     const { fields, orderBy, excludeFromSearch, ...rest } = params;
-    const data: any = rest;
+    const data: Record<string, unknown> = rest as Record<string, unknown>;
     if (fields) {
       data.fields = fields.join(",");
     }
