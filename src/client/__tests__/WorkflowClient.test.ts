@@ -59,4 +59,21 @@ describe("WorkflowClient", () => {
       });
     });
   });
+
+  describe("getFile", () => {
+    beforeEach(async () => {
+      await workflowClient.getFile({ id: 1 });
+    });
+    it("should pass the path to the http client", () => {
+      expect(mockClient.getLogs()[0].path).toBe(
+        "/api/v1/workflow/admin/files/1"
+      );
+    });
+    it("should send a get request", () => {
+      expect(mockClient.getLogs()[0].method).toBe("get");
+    });
+    it("should pass an empty object as a param to the http client", () => {
+      expect(mockClient.getLogs()[0].params).toEqual({});
+    });
+  });
 });

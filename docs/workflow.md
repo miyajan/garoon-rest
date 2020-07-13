@@ -1,6 +1,7 @@
 # Workflow
 
 - [getRequests](#getrequests)
+- [getFile](#getfile)
 
 ## Overview
 
@@ -47,3 +48,21 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360031071011#step1
+
+### getFile
+
+Get a file attached to a request.
+
+#### Parameters
+
+| Name |       Type       | Required | Description  |
+| ---- | :--------------: | :------: | ------------ |
+| id   | Number or String |   Yes    | The file ID. |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360031071011#step2

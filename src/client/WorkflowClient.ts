@@ -100,4 +100,18 @@ export class WorkflowClient {
     }
     return this.client.get(path, data);
   }
+
+  public getFile(params: {
+    id: string | number;
+  }): Promise<{
+    id: string;
+    contentType: string;
+    name: string;
+    size: string;
+    content: string;
+  }> {
+    const { id } = params;
+    const path = buildPath({ endpointName: `workflow/admin/files/${id}` });
+    return this.client.get(path, {});
+  }
 }
