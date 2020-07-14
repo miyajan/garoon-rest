@@ -10,6 +10,7 @@ import { platformDeps } from "./platform";
 import { UnsupportedPlatformError } from "./platform/UnsupportedPlatformError";
 import { GaroonRequestConfigBuilder } from "./GaroonRequestConfigBuilder";
 import { WorkflowClient } from "./client/WorkflowClient";
+import { BaseClient } from "./client/BaseClient";
 
 export type DiscriminatedAuth = PasswordAuth | SessionAuth | OAuthTokenAuth;
 
@@ -95,6 +96,7 @@ const buildDiscriminatedAuth = (auth: Auth): DiscriminatedAuth => {
 export class GaroonRestAPIClient {
   readonly schedule: ScheduleClient;
   readonly workflow: WorkflowClient;
+  readonly base: BaseClient;
   private readonly baseUrl: string;
 
   constructor(options: Options = {}) {
@@ -112,6 +114,7 @@ export class GaroonRestAPIClient {
     });
     this.schedule = new ScheduleClient(httpClient);
     this.workflow = new WorkflowClient(httpClient);
+    this.base = new BaseClient(httpClient);
   }
 
   public getBaseUrl(): string {
