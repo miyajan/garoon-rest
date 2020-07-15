@@ -2,12 +2,17 @@ import { buildBaseUrl } from "../browser";
 
 describe("buildBaseUrl", () => {
   describe("when cybozu.com", () => {
+    let originalLocation: any;
     beforeEach(() => {
-      (global as any).location = {
+      originalLocation = global.location;
+      global.location = {
         protocol: "https:",
         host: "example.cybozu.com",
         href: "https://example.cybozu.com",
       };
+    });
+    afterEach(() => {
+      global.location = originalLocation;
     });
 
     it("should build base url from location when baseUrl is not specified", () => {
@@ -22,12 +27,17 @@ describe("buildBaseUrl", () => {
   });
 
   describe("when on-premise", () => {
+    let originalLocation: any;
     beforeEach(() => {
-      (global as any).location = {
+      originalLocation = global.location;
+      global.location = {
         protocol: "http:",
         host: "example.com",
         href: "http://example.com/cgi-bin/cbgrn/grn.cgi/index",
       };
+    });
+    afterEach(() => {
+      global.location = originalLocation;
     });
 
     it("should build base url from location when baseUrl is not specified", () => {
