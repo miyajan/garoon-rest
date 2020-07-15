@@ -1,3 +1,14 @@
+# [0.3.0](https://github.com/miyajan/garoon-rest/compare/v0.2.0...v0.3.0) (2020-07-15)
+
+
+### Features
+
+* `base.getUsers` ([#43](https://github.com/miyajan/garoon-rest/issues/43)) ([b36e14e](https://github.com/miyajan/garoon-rest/commit/b36e14e83a9b80492d4c94624199c2c623296b79))
+* `workflow.getFile` ([#42](https://github.com/miyajan/garoon-rest/issues/42)) ([00390a8](https://github.com/miyajan/garoon-rest/commit/00390a8135895635cc244eb23783060484947a40))
+* `workflow.getRequests` ([#41](https://github.com/miyajan/garoon-rest/issues/41)) ([ede148c](https://github.com/miyajan/garoon-rest/commit/ede148c2209fcf4acee9159bd46a747c85af333c))
+
+
+
 # [0.2.0](https://github.com/miyajan/garoon-rest/compare/v0.1.0...v0.2.0) (2020-07-11)
 
 
