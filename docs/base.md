@@ -1,6 +1,7 @@
 # Base
 
 - [getUsers](#getusers)
+- [getOrganizations](#getorganizations)
 
 ## Overview
 
@@ -40,3 +41,23 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360018124651#step1
+
+### getOrganizations
+
+Get organizations specified by conditions.
+
+#### Parameters
+
+| Name   |  Type  | Required | Description                                                                                                                                |
+| ------ | :----: | :------: | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| limit  | Number |          | The number of organizations to retrieve.<br />Must be between `1` and `1000`.<br />If nothing is specified, it will default to `100`.      |
+| offset | Number |          | The number of retrievals that will be skipped.<br />Must be between `0` and `2147483647`. If nothing is specified, it will default to `0`. |
+| name   | String |          | The name for searching organizations.                                                                                                      |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360017843172#step1

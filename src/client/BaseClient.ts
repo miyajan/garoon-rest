@@ -18,8 +18,27 @@ export class BaseClient {
       name: string;
       code: string;
     }>;
+    hasNext: boolean;
   }> {
     const path = buildPath({ endpointName: "base/users" });
+    return this.client.get(path, params ?? {});
+  }
+
+  public getOrganizations(params?: {
+    limit?: number;
+    offset?: number;
+    name?: string;
+  }): Promise<{
+    organizations: Array<{
+      id: string;
+      name: string;
+      code: string;
+      parentOrganization: string;
+      childOrganizations: Array<{ id: string }>;
+    }>;
+    hasNext: boolean;
+  }> {
+    const path = buildPath({ endpointName: "base/organizations" });
     return this.client.get(path, params ?? {});
   }
 }
