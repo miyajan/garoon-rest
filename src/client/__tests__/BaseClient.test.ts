@@ -39,4 +39,24 @@ describe("BaseClient", () => {
       expect(mockClient.getLogs()[0].params).toEqual(params);
     });
   });
+
+  describe("getOrganizations", () => {
+    const params = {
+      limit: 100,
+      offset: 0,
+      name: "test",
+    };
+    beforeEach(async () => {
+      await baseClient.getOrganizations(params);
+    });
+    it("should pass the path to the http client", () => {
+      expect(mockClient.getLogs()[0].path).toBe("/api/v1/base/organizations");
+    });
+    it("should send a get request", () => {
+      expect(mockClient.getLogs()[0].method).toBe("get");
+    });
+    it("should pass params as a param to the http client", () => {
+      expect(mockClient.getLogs()[0].params).toEqual(params);
+    });
+  });
 });
