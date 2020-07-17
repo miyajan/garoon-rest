@@ -11,6 +11,7 @@ import { UnsupportedPlatformError } from "./platform/UnsupportedPlatformError";
 import { GaroonRequestConfigBuilder } from "./GaroonRequestConfigBuilder";
 import { WorkflowClient } from "./client/WorkflowClient";
 import { BaseClient } from "./client/BaseClient";
+import { PresenceClient } from "./client/PresenceClient";
 
 export type DiscriminatedAuth = PasswordAuth | SessionAuth | OAuthTokenAuth;
 
@@ -97,6 +98,7 @@ export class GaroonRestAPIClient {
   readonly schedule: ScheduleClient;
   readonly workflow: WorkflowClient;
   readonly base: BaseClient;
+  readonly presence: PresenceClient;
   private readonly baseUrl: string;
 
   constructor(options: Options = {}) {
@@ -115,6 +117,7 @@ export class GaroonRestAPIClient {
     this.schedule = new ScheduleClient(httpClient);
     this.workflow = new WorkflowClient(httpClient);
     this.base = new BaseClient(httpClient);
+    this.presence = new PresenceClient(httpClient);
   }
 
   public getBaseUrl(): string {
