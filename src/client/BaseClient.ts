@@ -41,4 +41,21 @@ export class BaseClient {
     const path = buildPath({ endpointName: "base/organizations" });
     return this.client.get(path, params ?? {});
   }
+
+  public getUsersByOrganizationID(params: {
+    id: string | number;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    users: Array<{
+      id: string;
+      name: string;
+      code: string;
+    }>;
+    hasNext: boolean;
+  }> {
+    const { id, ...rest } = params;
+    const path = buildPath({ endpointName: `base/organizations/${id}/users` });
+    return this.client.get(path, rest as Record<string, unknown>);
+  }
 }
