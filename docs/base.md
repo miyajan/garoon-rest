@@ -11,7 +11,7 @@ const client = new GaroonRestAPIClient();
 
 (async () => {
   try {
-    console.log(await client.base.getUsers);
+    console.log(await client.base.getUsers());
   } catch (error) {
     console.log(error);
   }
