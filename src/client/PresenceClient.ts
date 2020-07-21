@@ -1,4 +1,5 @@
 import { HttpClient } from "../http";
+import { Presence } from "./types";
 import { buildPath } from "../url";
 
 export class PresenceClient {
@@ -10,21 +11,15 @@ export class PresenceClient {
 
   public getPresenceByUserID(params: {
     id: string | number;
-  }): Promise<{
-    user: {
-      id: string;
-      name: string;
-      code: string;
-    };
-    updatedAt: string;
-    notes: string;
-    status: {
-      name: string;
-      code: string;
-    };
-  }> {
+  }): Promise<Presence> {
     const { id } = params;
     const path = buildPath({ endpointName: `presence/users/${id}` });
+    return this.client.get(path, {});
+  }
+
+  public getPresenceByUserCode(params: { code: string }): Promise<Presence> {
+    const { code } = params;
+    const path = buildPath({ endpointName: `presence/users/code/${code}` });
     return this.client.get(path, {});
   }
 }

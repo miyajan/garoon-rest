@@ -1,6 +1,7 @@
 # Presence
 
 - [getPresenceByUserID](#getpresencebyuserid)
+- [getPresenceByUserCode](#getpresencebyusercode)
 
 ## Overview
 
@@ -38,3 +39,21 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360026939891#step1
+
+### getPresenceByUserCode
+
+Get the presence information specified by the code of the user.
+
+#### Parameters
+
+| Name |  Type  | Required | Description           |
+| ---- | :----: | :------: | --------------------- |
+| code | String |   Yes    | The code of the user. |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360026939891#step2

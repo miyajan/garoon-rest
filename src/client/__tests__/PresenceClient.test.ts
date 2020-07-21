@@ -35,4 +35,22 @@ describe("PresenceClient", () => {
       expect(mockClient.getLogs()[0].params).toEqual({});
     });
   });
+
+  describe("getPresenceByUserCode", () => {
+    const params = { code: "cybozu" };
+    beforeEach(async () => {
+      await presenceClient.getPresenceByUserCode(params);
+    });
+    it("should pass the path to the http client", () => {
+      expect(mockClient.getLogs()[0].path).toBe(
+        "/api/v1/presence/users/code/cybozu"
+      );
+    });
+    it("should send a get request", () => {
+      expect(mockClient.getLogs()[0].method).toBe("get");
+    });
+    it("should pass an empty object as a param to the http client", () => {
+      expect(mockClient.getLogs()[0].params).toEqual({});
+    });
+  });
 });
