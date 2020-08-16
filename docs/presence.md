@@ -3,6 +3,7 @@
 - [getPresenceByUserID](#getpresencebyuserid)
 - [getPresenceByUserCode](#getpresencebyusercode)
 - [updatePresenceByUserID](#updatepresencebyuserid)
+- [updatePresenceByUserCode](#updatepresencebyusercode)
 
 ## Overview
 
@@ -79,3 +80,24 @@ See the example response in the `Reference`.
 #### Reference
 
 - https://developer.cybozu.io/hc/ja/articles/360026939911#step1
+
+### updatePresenceByUserCode
+
+Update the presence information specified by the user code.
+
+#### Parameters
+
+| Name        |  Type  | Required | Description                                  |
+| ----------- | :----: | :------: | -------------------------------------------- |
+| code        | String |   Yes    | The user code.                               |
+| status      | Object |          | An object containing data of the status.     |
+| status.code | String |          | The status code of the presence information. |
+| notes       | String |          | The memo.                                    |
+
+#### Returns
+
+See the example response in the `Reference`.
+
+#### Reference
+
+- https://developer.cybozu.io/hc/ja/articles/360026939911#step2
