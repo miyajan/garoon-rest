@@ -80,4 +80,33 @@ describe("PresenceClient", () => {
       });
     });
   });
+
+  describe("updatePresenceByUserCode", () => {
+    const params = {
+      code: "cybozu",
+      status: {
+        code: "attend",
+      },
+      notes: "This is presence note.",
+    };
+    beforeEach(async () => {
+      await presenceClient.updatePresenceByUserCode(params);
+    });
+    it("should pass the path to the http client", () => {
+      expect(mockClient.getLogs()[0].path).toBe(
+        "/api/v1/presence/users/code/cybozu"
+      );
+    });
+    it("should send a patch request", () => {
+      expect(mockClient.getLogs()[0].method).toBe("patch");
+    });
+    it("should pass status and notes as a param to the http client", () => {
+      expect(mockClient.getLogs()[0].params).toEqual({
+        status: {
+          code: "attend",
+        },
+        notes: "This is presence note.",
+      });
+    });
+  });
 });
