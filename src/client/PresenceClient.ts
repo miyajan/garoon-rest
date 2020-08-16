@@ -22,4 +22,17 @@ export class PresenceClient {
     const path = buildPath({ endpointName: `presence/users/code/${code}` });
     return this.client.get(path, {});
   }
+
+  public updatePresenceByUserID(params: {
+    id: string | number;
+    status?: {
+      code?: string;
+    };
+    notes?: string;
+  }): Promise<Presence> {
+    const { id, ...rest } = params;
+    const path = buildPath({ endpointName: `presence/users/${id}` });
+    const data = (rest as unknown) as Record<string, unknown>;
+    return this.client.patch(path, data);
+  }
 }
