@@ -12,6 +12,7 @@ import { GaroonRequestConfigBuilder } from "./GaroonRequestConfigBuilder";
 import { WorkflowClient } from "./client/WorkflowClient";
 import { BaseClient } from "./client/BaseClient";
 import { PresenceClient } from "./client/PresenceClient";
+import { NotificationClient } from "./client/NotificationClient";
 
 export type DiscriminatedAuth = PasswordAuth | SessionAuth | OAuthTokenAuth;
 
@@ -99,6 +100,7 @@ export class GaroonRestAPIClient {
   readonly workflow: WorkflowClient;
   readonly base: BaseClient;
   readonly presence: PresenceClient;
+  readonly notification: NotificationClient;
   private readonly baseUrl: string;
 
   constructor(options: Options = {}) {
@@ -118,6 +120,7 @@ export class GaroonRestAPIClient {
     this.workflow = new WorkflowClient(httpClient);
     this.base = new BaseClient(httpClient);
     this.presence = new PresenceClient(httpClient);
+    this.notification = new NotificationClient(httpClient);
   }
 
   public getBaseUrl(): string {
