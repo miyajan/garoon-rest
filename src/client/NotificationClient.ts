@@ -43,4 +43,37 @@ export class NotificationClient {
     }
     return this.client.get(path, data);
   }
+
+  public addItem(params: {
+    app: string;
+    notificationKey: string;
+    operation: "add" | "modify" | "remove";
+    url: string;
+    title: string;
+    body: string;
+    icon?: string;
+    destinations: Array<{
+      type: "USER";
+      id?: string | number;
+      code?: string;
+    }>;
+  }): Promise<{
+    moduleId: string;
+    notificationKey: string;
+    creator: {
+      id: string;
+      code: string;
+      name: string;
+    };
+    createdAt: string;
+    operation: "add" | "modify" | "remove";
+    url: string;
+    title: string;
+    body: string;
+    icon: string;
+    isRead: boolean;
+  }> {
+    const path = buildPath({ endpointName: `notification/items` });
+    return this.client.post(path, params);
+  }
 }
