@@ -43,4 +43,34 @@ describe("NotificationClient", () => {
       });
     });
   });
+
+  describe("addItem", () => {
+    const params = {
+      app: "Test",
+      notificationKey: "test-notification-key",
+      operation: "add" as const,
+      url: "http://example.com",
+      title: "Test title",
+      body: "Test body",
+      icon: "http://example.com/example.png",
+      destinations: [
+        {
+          type: "USER" as const,
+          id: "1",
+        },
+      ],
+    };
+    beforeEach(async () => {
+      await notificationClient.addItem(params);
+    });
+    it("should pass the path to the http client", () => {
+      expect(mockClient.getLogs()[0].path).toBe("/api/v1/notification/items");
+    });
+    it("should send a post request", () => {
+      expect(mockClient.getLogs()[0].method).toBe("post");
+    });
+    it("should pass params as a param to the http client", () => {
+      expect(mockClient.getLogs()[0].params).toEqual(params);
+    });
+  });
 });
