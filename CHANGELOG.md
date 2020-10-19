@@ -1,3 +1,24 @@
+# [0.4.0](https://github.com/miyajan/garoon-rest/compare/v0.3.0...v0.4.0) (2020-10-19)
+
+
+### Bug Fixes
+
+* npm audit fix ([#51](https://github.com/miyajan/garoon-rest/issues/51)) ([cbb882a](https://github.com/miyajan/garoon-rest/commit/cbb882a35a17ceb3f6b2cf23c2b4359a6e18c08b))
+
+
+### Features
+
+* `base.getOrganizaions` ([#46](https://github.com/miyajan/garoon-rest/issues/46)) ([a4c87cb](https://github.com/miyajan/garoon-rest/commit/a4c87cb4e51db894ef3a38dcf0e4ef9ec4857e2e))
+* `base.getUsersByOrganizationID` ([#47](https://github.com/miyajan/garoon-rest/issues/47)) ([3a081b1](https://github.com/miyajan/garoon-rest/commit/3a081b1e128daea42905447e231cd766cb1f2e94))
+* `notification.addItem` ([#54](https://github.com/miyajan/garoon-rest/issues/54)) ([42d0f80](https://github.com/miyajan/garoon-rest/commit/42d0f807a537bfea853f5601a72812998039ddcc))
+* `notification.getItems` ([#53](https://github.com/miyajan/garoon-rest/issues/53)) ([56e6c85](https://github.com/miyajan/garoon-rest/commit/56e6c853f92848be1bc24c181be5ba26c06a1018))
+* `presence.getPresenceByUserCode` ([#49](https://github.com/miyajan/garoon-rest/issues/49)) ([c2b8708](https://github.com/miyajan/garoon-rest/commit/c2b87086e23fbb6822d17cfb85003143039ae121))
+* `presence.getPresenceByUserID` ([#48](https://github.com/miyajan/garoon-rest/issues/48)) ([8d60176](https://github.com/miyajan/garoon-rest/commit/8d60176111248fee8a889ad49c1699111166b646))
+* `presence.updatePresenceByUserCode` ([#52](https://github.com/miyajan/garoon-rest/issues/52)) ([4c3f905](https://github.com/miyajan/garoon-rest/commit/4c3f905d815ab4415d2f6ed1cc407221d49f7c0f))
+* `presence.updatePresenceByUserID` ([#50](https://github.com/miyajan/garoon-rest/issues/50)) ([ee54b93](https://github.com/miyajan/garoon-rest/commit/ee54b93dda3d480d52af8a21a31aca0aa2ebbf11))
+
+
+
 # [0.3.0](https://github.com/miyajan/garoon-rest/compare/v0.2.0...v0.3.0) (2020-07-15)
 
 
