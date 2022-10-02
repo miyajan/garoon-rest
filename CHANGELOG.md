@@ -1,3 +1,8 @@
+## [0.4.2](https://github.com/miyajan/garoon-rest/compare/v0.4.1...v0.4.2) (2022-10-02)
+
+* fix NODE_AUTH_TOKEN to NPM_AUTH_TOKEN for shipjs release ([#87](https://github.com/miyajan/garoon-rest/issues/87)) ([17299ff](https://github.com/miyajan/garoon-rest/commit/17299ff27636a459bb12a209252d04a080505e9b))
+
+
 ## [0.4.1](https://github.com/miyajan/garoon-rest/compare/v0.4.0...v0.4.1) (2022-10-02)
 
 * drop Node v12 support because of the EOL ([#77](https://github.com/miyajan/garoon-rest/issues/77)) ([25357c8](https://github.com/miyajan/garoon-rest/commit/25357c8ed93b0305414828672da504af7e145e85))
