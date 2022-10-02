@@ -78,7 +78,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "core-js": "^3.6.5",
     "js-base64": "^2.6.2",
     "qs": "^6.9.4"
