@@ -55,7 +55,7 @@
   },
   "homepage": "https://github.com/miyajan/garoon-rest",
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=14.0.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.10.3",
