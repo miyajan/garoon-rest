@@ -1,3 +1,5 @@
+# Changelog
+
 ## [0.4.2](https://github.com/miyajan/garoon-rest/compare/v0.4.1...v0.4.2) (2022-10-02)
 
 * fix NODE_AUTH_TOKEN to NPM_AUTH_TOKEN for shipjs release ([#87](https://github.com/miyajan/garoon-rest/issues/87)) ([17299ff](https://github.com/miyajan/garoon-rest/commit/17299ff27636a459bb12a209252d04a080505e9b))
@@ -9,7 +11,7 @@
 * npm audit fix ([#85](https://github.com/miyajan/garoon-rest/issues/85)) ([3b5ace5](https://github.com/miyajan/garoon-rest/commit/3b5ace54f0f56668ebe68830572119be7698e0a7))
 
 
-# [0.4.0](https://github.com/miyajan/garoon-rest/compare/v0.3.0...v0.4.0) (2020-10-19)
+## [0.4.0](https://github.com/miyajan/garoon-rest/compare/v0.3.0...v0.4.0) (2020-10-19)
 
 
 ### Bug Fixes
@@ -30,7 +32,7 @@
 
 
 
-# [0.3.0](https://github.com/miyajan/garoon-rest/compare/v0.2.0...v0.3.0) (2020-07-15)
+## [0.3.0](https://github.com/miyajan/garoon-rest/compare/v0.2.0...v0.3.0) (2020-07-15)
 
 
 ### Features
@@ -41,7 +43,7 @@
 
 
 
-# [0.2.0](https://github.com/miyajan/garoon-rest/compare/v0.1.0...v0.2.0) (2020-07-11)
+## [0.2.0](https://github.com/miyajan/garoon-rest/compare/v0.1.0...v0.2.0) (2020-07-11)
 
 
 ### Features
@@ -56,7 +58,7 @@
 
 
 
-# [0.1.0](https://github.com/miyajan/garoon-rest/compare/v0.0.2...v0.1.0) (2020-06-30)
+## [0.1.0](https://github.com/miyajan/garoon-rest/compare/v0.0.2...v0.1.0) (2020-06-30)
 
 
 ### Features
