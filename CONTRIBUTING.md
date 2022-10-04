@@ -23,8 +23,8 @@ Thank you for your contribution!
 
 ### Merge
 
-After you have approved a PR, please merge the PR using **Squash and merge** with [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format.
+After you have approved a PR, please merge the PR.
 
 ### Release
 
-Commenting `@shipjs prepare` on an issue or PR will create a PR for a new release. Merging the PR will trigger publishing to npm, creating a tag, and creating a release.
+After a PR is merged, [Release Please](https://github.com/googleapis/release-please) creates a release PR. Merging the release PR will trigger creating a tag, creating a GitHub Release, and publishing to npm.
